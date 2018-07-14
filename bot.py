@@ -1,12 +1,15 @@
 #JHbot by Jay
 
 import discord
+import asyncio
+from tokenfile import tokenVar
 from discord.ext import commands
 from discord.ext.commands import Bot
-import asyncio
 
 bot = commands.Bot(command_prefix = "#")
 bot.remove_command("help")
+
+print(tokenVar)
 
 @bot.event
 async def on_ready():
@@ -76,7 +79,6 @@ async def depression():
 		# exec("embedDepression" + str(i) + ".set_author(name = 'JHbot', icon_url = 'http://niconiconii.co.uk/swan.jpg')")
 		# exec("embedDepression" + str(i) + ".add_field(name ='" + questions[i] + "', value = '0: None of the time, 4: All of the time')")
 		# exec("await bot.say(embed = embedDepression" + str(i) + ")")
-		
 
 
-bot.run("NDY2NjYwMjE4MTc3MDYwODc0.DifavA.e5j0ctS0LZEyMTdOl9BPOuudo_I")
+bot.run(tokenVar)
