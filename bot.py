@@ -81,4 +81,5 @@ async def depression():
 		# exec("await bot.say(embed = embedDepression" + str(i) + ")")
 
 
+
 bot.run(tokenVar)
