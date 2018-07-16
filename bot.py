@@ -1,20 +1,23 @@
-#JHbot by Jay
+# JHbot by Jay
 
-import discord
+import sys
 import asyncio
 from tokenfile import tokenVar
+
+import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
 
-bot = commands.Bot(command_prefix = "#")
+bot = commands.Bot(command_prefix = "=")
 bot.remove_command("help")
 
-print(tokenVar)
+print("")
+print("Loading...")
+print("")
 
 @bot.event
 async def on_ready():
 	await bot.change_status(game=discord.Game(name="15 Hours"))
-	print("")
 	print("Running")
 	print("Bot username: " + bot.user.name)
 	print("Bot user ID: " + bot.user.id)
@@ -31,12 +34,12 @@ async def help():
 	embedHelp.set_author(name = "JHbot", icon_url = "http://niconiconii.co.uk/swan.jpg")
 	embedHelp.add_field(name = "#help", value = "Show this", inline = False)
 	embedHelp.add_field(name = "#ping", value = "wtf u think it does lool", inline = False)
-	embedHelp.add_field(name = "#depression", value = "Depression test", inline = False)
+	# embedHelp.add_field(name = "#depression", value = "Depression test", inline = False)
 	await bot.say(embed = embedHelp)
 
 
-@bot.command(pass_context = True)
-async def ping(ctx):
+@bot.command()
+async def ping():
 	await bot.say("Pong")
 	userid = ctx.message.author.id
 
@@ -70,16 +73,21 @@ async def depression():
 		]
 
 		embedDepression = discord.Embed(title = "Commands", colour = 0xFFFFFF)
-		embedDepression.set_footer()
 		embedDepression.clear_fields()
+		
+		embedDepression.set_footer()
 		embedDepression.add_field(name = questions[i], value = "1: none of the time, 4: all of the time")
 		await bot.say(embed = embedDepression)
 
-		# exec("embedDepression" + str(i) + " = discord.Embed(title = 'Depression test', colour = 0xFFFFFF)")
-		# exec("embedDepression" + str(i) + ".set_author(name = 'JHbot', icon_url = 'http://niconiconii.co.uk/swan.jpg')")
-		# exec("embedDepression" + str(i) + ".add_field(name ='" + questions[i] + "', value = '0: None of the time, 4: All of the time')")
-		# exec("await bot.say(embed = embedDepression" + str(i) + ")")
+		#discord.on_message
 
+@bot.command()
+async def echo(*args):
+	output = ""
+	for word in args:
+		output = output + word
+		output = output + " "
+	await bot.say(output)
 
 
 bot.run(tokenVar)
