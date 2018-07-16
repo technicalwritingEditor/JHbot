@@ -1,0 +1,2 @@
+# JHbot
+Discord bot
